@@ -88,11 +88,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aatta\\Desktop\\librarytracker\\LibraryApi\\LibraryApi.csproj",
+      "projectUniqueName": "C:\\Users\\aatta\\Desktop\\librarytracker\\library-tracker\\backend\\LibraryApi\\LibraryApi.csproj",
       "projectName": "LibraryApi",
-      "projectPath": "C:\\Users\\aatta\\Desktop\\librarytracker\\LibraryApi\\LibraryApi.csproj",
+      "projectPath": "C:\\Users\\aatta\\Desktop\\librarytracker\\library-tracker\\backend\\LibraryApi\\LibraryApi.csproj",
       "packagesPath": "C:\\Users\\aatta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aatta\\Desktop\\librarytracker\\LibraryApi\\obj\\",
+      "outputPath": "C:\\Users\\aatta\\Desktop\\librarytracker\\library-tracker\\backend\\LibraryApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\aatta\\AppData\\Roaming\\NuGet\\NuGet.Config"
