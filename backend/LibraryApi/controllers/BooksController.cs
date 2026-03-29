@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using LibraryApi.Models;
-using System.Collections.Generic;
+using LibraryApi.Models; // for Book
+using LibraryApi.Data;   // for LibraryContext
 using System.Linq;
 
 namespace LibraryApi.Controllers
@@ -9,42 +9,54 @@ namespace LibraryApi.Controllers
     [Route("api/[controller]")]
     public class BooksController : ControllerBase
     {
-        private static List<Book> BookStore = new List<Book>();
+        private readonly LibraryContext _context;
 
+        public BooksController(LibraryContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/books
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(BookStore);
+            var books = _context.Books.ToList(); // read from database
+            return Ok(books);
         }
 
+        // POST: api/books
         [HttpPost]
         public IActionResult Add(Book book)
         {
-            book.Id = BookStore.Count + 1;
-            BookStore.Add(book);
+            _context.Books.Add(book);   // add to database
+            _context.SaveChanges();     // persist changes
             return Ok(book);
         }
 
+        // PUT: api/books/{id}
         [HttpPut("{id}")]
         public IActionResult Update(int id, Book updated)
         {
-            var book = BookStore.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.Find(id); // find in database
             if (book == null) return NotFound();
 
             book.Title = updated.Title;
             book.Author = updated.Author;
             book.IsRead = updated.IsRead;
 
+            _context.SaveChanges(); // persist update
             return Ok(book);
         }
 
+        // DELETE: api/books/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var book = BookStore.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.Find(id);
             if (book == null) return NotFound();
 
-            BookStore.Remove(book);
+            _context.Books.Remove(book);
+            _context.SaveChanges(); // persist deletion
             return Ok();
         }
     }
